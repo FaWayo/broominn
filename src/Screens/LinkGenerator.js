@@ -10,20 +10,22 @@ function LinkGenerator(props) {
 
     // const[username, setUsername] = useState('')
     const[url, setUrl] = useState('')
-    const[productName, setProductName] = useState('')
+    const[seller, setSeller] = useState('')
+    let uniqueId = uuidv4();
 
+    const referrer = firebase.getCurrentUsername();
     
-   
+    const link =`http://localhost:3000/l/${uniqueId}`;
 
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        let uniqueId = uuidv4();
-        // let uid = firebase.getCurrentUsername.uid
         
-        await firebase.addUrl(url, uniqueId)
+  
+        
+        await firebase.addUrl(referrer, url, uniqueId, seller, link)
 
-        alert("This is your URL - http://broomin.com/referral?id=" + uniqueId);
+        alert(link);
     };
 
     async function logout() {
@@ -40,15 +42,15 @@ function LinkGenerator(props) {
             <button onClick={logout}> Logout </button>
         <div className = "container-1">
 
-            <h1>Hello {firebase.getCurrentUsername()}, Generate your Link</h1>
+            {/* <h1>{referrer}, generate referral link</h1> */}
             <form onSubmit={handleFormSubmit} >
           
-                <label>destination link: </label>
-                <input className="input-1" type="text" value={url} onChange={e=> setUrl(e.target.value)}/>
+                <label> SellerUrl: </label>
+                <input className="input-1" type="text" value={url} placeholder= "Enter URL of Seller" onChange={e=> setUrl(e.target.value)}/>
                 <br/>
 
-                <label>product name:  </label>
-                <input className="input-1" type="text" value={productName} onChange={e=> setProductName(e.target.value)}/>
+                <label>Seller:  </label>
+                <input className="input-1" type="text" value={seller} onChange={e=> setSeller(e.target.value)} placeholder="Enter name of the seller"/>
                 
                 <button  type="submit" className="button-1">Generate Link</button> 
             </form>

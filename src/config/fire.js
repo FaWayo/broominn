@@ -15,7 +15,7 @@ const firebaseConfig = {
     measurementId: "G-0T1TBR90YG"
   };
 
-
+  
    
 
   class Firebase {
@@ -27,6 +27,7 @@ const firebaseConfig = {
         
       }
 
+      
       
 
 
@@ -52,7 +53,7 @@ const firebaseConfig = {
                 return alert('Not authorized')
             }
             return this.db.doc(`users/${this.auth.currentUser.uid}`).set({
-                username
+                username: username
             })
         };
 
@@ -65,16 +66,24 @@ const firebaseConfig = {
         getCurrentUsername(){
             return this.auth.currentUser && this.auth.currentUser.displayName
 
+
+
         }
 
+       
 
-         async addUrl(url, uniqueId) {
-            // functions.auth.user().onC
+        
+
+         async addUrl(referrer, url, uniqueId, seller, link) {
+             
+            
             try {
                  const docRef = await this.db.collection("urls").add({
-                    //  uid: uid,
-                     url: url,
-                     code: uniqueId,
+                     referral_code: uniqueId,
+                     custom_url: link,
+                     seller: seller,
+                     seller_url: url,
+                     referrer: referrer,
                  });
                  console.log("Document written with ID: ", docRef.id);
              } catch (error) {
@@ -85,11 +94,30 @@ const firebaseConfig = {
         
           }
 
-        connectCode(code) {
           
-              return this.db.collection("urls").where("code", "==", code)
-           
-        } ;
+
+          
+
+          getUrl(code){
+        return this.db.collection("urls").where("referral_code", "==", code )
+            
+          
+
+
+            
+          }
+
+
+          
+        //   querySnapshot((doc) => {
+        //     const finalData = doc.data();
+        //     console.log(finalData);
+        //     return finalData.url;
+        // });
+
+         
+
+      
 
         
 

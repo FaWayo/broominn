@@ -43,7 +43,7 @@ function Signup(props) {
                 <br/>
 
                 <label>Password: </label>
-                <input className="input-1" type="password" value={password} onChange={e=> setPassword(e.target.value)}/>
+                <input className="input-1" type="password" value={password} onChange={ e=> setPassword(e.target.value)}/>
                 
                 <button type="submit" className="button-1"  onClick={onRegister}>Register</button> 
 
