@@ -2,8 +2,6 @@ import firebase from "firebase";
 import 'firebase/auth';
 import 'firebase/firestore';
 
-
-
 const firebaseConfig = {
     apiKey: "AIzaSyBVYS_9wPVPHgNlBQWYIrx2DPgzKuEDtmQ",
     authDomain: "broomin-af51e.firebaseapp.com",
@@ -11,8 +9,8 @@ const firebaseConfig = {
     projectId: "broomin-af51e",
     storageBucket: "broomin-af51e.appspot.com",
     messagingSenderId: "963990708983",
-    appId: "1:963990708983:web:d91c056480b73c483469f2",
-    measurementId: "G-0T1TBR90YG"
+    appId: "1:963990708983:web:8ff6d52f584c3cf43469f2",
+    measurementId: "G-43TNT1NNRP"
   };
 
   
@@ -76,7 +74,7 @@ const firebaseConfig = {
 
          async addUrl(referrer, url, uniqueId, seller, link) {
              
-            
+            console.log(referrer, url, uniqueId, seller, link, 'stuff to')
             try {
                  const docRef = await this.db.collection("urls").add({
                      referral_code: uniqueId,

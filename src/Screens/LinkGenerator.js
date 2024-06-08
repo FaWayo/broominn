@@ -15,7 +15,7 @@ function LinkGenerator(props) {
 
     const referrer = firebase.getCurrentUsername();
     
-    const link =`http://localhost:3000/l/${uniqueId}`;
+    const link =`http://salesyrefer/${uniqueId}`;
 
 
     const handleFormSubmit = async (e) => {
